@@ -1,0 +1,21 @@
+# Node.js dependencies
+node_modules/
+dist/
+out/
+
+# Logs
+*.log
+
+# TypeScript files
+src/*.js
+src/*.js.map
+
+# IDE settings
+.vscode/
+.DS_Store
+Thumbs.db
+
+.vscode-test.mjs
+.vscodeignore
+
+eslint.config.mjs

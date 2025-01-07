@@ -1,0 +1,52 @@
+{
+  "name": "react-component-generator-KruII",
+  "displayName": "React Component Generator By KruII",
+  "description": "Generate React components with one click",
+  "version": "1.0.0",
+  "publisher": "KruII",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:react-component-generator-KruII.createComponent"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "react-component-generator-KruII.createComponent",
+        "title": "Create a New React Component"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "react-component-generator-KruII.createComponent",
+          "group": "navigation",
+          "when": "explorerResourceIsFolder"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "watch": "tsc --watch",
+    "compile": "tsc -p ./",
+    "lint": "eslint . --ext .ts"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.0",
+    "@types/vscode": "^1.96.0",
+    "eslint": "^7.0.0",
+    "typescript": "^4.0.0"
+  },
+  "dependencies": {
+    "react-component-generator-KruII": "file:"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KruII/react-component-generator-KruII.git"
+  }
+}
