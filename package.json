@@ -2,7 +2,7 @@
   "name": "react-component-generator-KruII",
   "displayName": "React Component Generator By KruII",
   "description": "Generate React components with one click",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "publisher": "KruII",
   "engines": {
     "vscode": "^1.96.0"

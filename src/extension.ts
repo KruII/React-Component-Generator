@@ -21,6 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
       }
 
       const componentDir = path.join(uri.fsPath, componentName);
+      const testDir = path.join(componentDir, 'test'); // Define the test folder path
 
       try {
         // Create folder if it doesn't exist
@@ -31,11 +32,15 @@ export function activate(context: vscode.ExtensionContext) {
           return;
         }
 
+        if (!fs.existsSync(testDir)) {
+          fs.mkdirSync(testDir, { recursive: true });
+        }
+
         const templates = {
           tsx: `import React from 'react';
 import './${componentName}.module.css';
 
-const ${componentName}: React.FC = () => {
+const ${componentName} = () => {
   return (
     <div className="${componentName}">
       ${componentName} works!
@@ -50,7 +55,8 @@ export default ${componentName};
 }`,
           test: `import React from 'react';
 import { render } from '@testing-library/react';
-import ${componentName} from './${componentName}';
+import ${componentName} from '../${componentName}';
+import { describe, it } from 'node:test';
 
 describe('<${componentName} />', () => {
   it('renders without crashing', () => {
@@ -60,10 +66,12 @@ describe('<${componentName} />', () => {
 `,
         };
 
-        // Create files
+        // Create files in the component folder
         fs.writeFileSync(path.join(componentDir, `${componentName}.tsx`), templates.tsx);
         fs.writeFileSync(path.join(componentDir, `${componentName}.module.css`), templates.css);
-        fs.writeFileSync(path.join(componentDir, `${componentName}.test.tsx`), templates.test);
+
+        // Create the test file in the test folder
+        fs.writeFileSync(path.join(testDir, `${componentName}.test.tsx`), templates.test);
 
         vscode.window.showInformationMessage(`The component "${componentName}" has been created!`);
       } catch (error) {
